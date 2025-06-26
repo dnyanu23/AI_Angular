@@ -1,0 +1,37 @@
+<!-- <p>Generate SDLC steps for Business Requirement</p>
+
+
+<textarea [(ngModel)]="inputData" placeholder="Enter your business input here" style="width: 45%;"></textarea>
+<p></p>
+<button (click)="generate()">Generate</button> || <button (click)="chat()">Chat Ollama</button>
+<p></p>
+<div *ngIf="outputData">
+    <h3>Generated SDLC Steps:</h3>
+    <pre>{{ outputData }}</pre>
+</div>
+<div *ngIf="isLoading">
+    <p>Loading...</p>
+</div> -->
+<br>
+
+
+<div class="ai-container">
+    <div class="ai-prompt">
+        <h3>AI Prompt</h3>
+        <textarea [(ngModel)]="inputData" placeholder="Enter your business input here"></textarea>
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+            <button (click)="generate()">Generate</button>
+            <button (click)="clear()">Clear</button>
+        </div>
+    </div>
+    <div class="ai-output">
+        <h3>Output</h3>
+        <div *ngIf="isLoading">
+            <p>Loading...</p>
+        </div>
+        <div *ngIf="outputData && !isLoading" style="max-width: 100%; max-height: 300px; overflow: auto;">
+            <pre style="white-space: pre;">{{ outputData }}</pre>
+        </div>
+        <p *ngIf="!outputData && !isLoading" style="color: #888;">No output yet.</p>
+    </div>
+</div>

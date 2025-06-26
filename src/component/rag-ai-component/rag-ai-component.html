@@ -1,0 +1,9 @@
+<div>
+    <textarea [(ngModel)]="query" rows="4" cols="50" placeholder="Ask your question..."></textarea>
+    <button (click)="ask()">Ask</button>
+</div>
+
+<div *ngIf="answer">
+    <h3>Answer:</h3>
+    <p>{{ answer }}</p>
+</div>

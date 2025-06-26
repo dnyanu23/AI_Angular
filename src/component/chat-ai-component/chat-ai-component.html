@@ -1,0 +1,19 @@
+<div class="chat-floating-container" [class.minimized]="minimized">
+    <div class="chat-header" (click)="toggleMinimize()">
+        <span>Chat</span>
+        <button class="minimize-btn">{{ minimized ? '▲' : '▼' }}</button>
+    </div>
+    <div class="chat-window" *ngIf="!minimized">
+        <div #chatBody class="chat-body">
+            <div *ngFor="let msg of messages"
+                [ngClass]="{'user': msg.sender === 'user', 'assistant': msg.sender === 'assistant'}"
+                class="chat-message">
+                <div class="message-content">{{ msg.text }}</div>
+            </div>
+        </div>
+        <div class="chat-input">
+            <input [(ngModel)]="inputText" (keyup.enter)="sendMessage()" placeholder="Type your message..." />
+            <button (click)="sendMessage()">Send</button>
+        </div>
+    </div>
+</div>
