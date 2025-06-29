@@ -1,7 +1,14 @@
+<div style="max-width: 100%; overflow-x: auto; padding: 8px;">
+    <h2>Short Story</h2>
+    <pre class="passage">
+    {{ passage }}
+    </pre>
+</div>
+
 <div class="chat-floating-container" [class.minimized]="minimized">
     <div class="chat-header" (click)="toggleMinimize()">
-        <span>Chat</span>
-        <button class="minimize-btn">{{ minimized ? '▲' : '▼' }}</button>
+        <span>Ask</span>
+        <button class="minimize-btn">{{ minimized ? '▲' : '-' }}</button>
     </div>
     <div class="chat-window" *ngIf="!minimized">
         <div #chatBody class="chat-body">

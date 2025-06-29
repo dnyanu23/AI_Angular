@@ -28,7 +28,7 @@ export class LlamaAiService {
 
     generate(model: string, prompt: string): Observable<any> {
 
-        // console.log(prompt); // Log the prompt for debugging
+        console.log(prompt); // Log the prompt for debugging
 
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -50,6 +50,17 @@ export class LlamaAiService {
 
     removeThinkTags(text: string): string {
         return text.replace(/<think>[\s\S]*?<\/think>/gi, '');
+    }
+
+    generatewithAPI(model: string, prompt: string): Observable<any> {
+        console.log(prompt); // Log the prompt for debugging
+
+        // const headers = new HttpHeaders({
+        //     'Content-Type': 'application/json',
+        // });
+        const body = { model, prompt, stream: false };
+        debugger;
+        return this.http.post("http://localhost:5156/api/PdfQa/AIGenerate", body);
     }
 
 }

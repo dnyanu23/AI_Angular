@@ -114,3 +114,19 @@
     font-size: 15px;
     cursor: pointer;
 }
+
+.passage {
+    width: 100%;
+    min-height: 180px;
+    background: #f8f8f8;
+    border-radius: 6px;
+    padding: 16px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1em;
+    tab-size: 4;
+    resize: none;
+    overflow: hidden;
+    white-space: pre-wrap;
+    word-break: break-word;
+    box-sizing: border-box;
+}

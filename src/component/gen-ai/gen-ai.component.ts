@@ -27,7 +27,7 @@ export class GenAIComponent {
     else {
       this.isLoading = true; // Set isLoading to true when starting the request
       this.prompt = this.inputData;
-      this.llamaAIService.generate("deepseek-r1:1.5b", this.prompt).subscribe((response: any) => {
+      this.llamaAIService.generatewithAPI("deepseek-r1:1.5b", this.prompt).subscribe((response: any) => {
         console.log('Generated response:', response.response);
         this.isLoading = false;
         this.outputData = response.response;

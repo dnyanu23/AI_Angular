@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { LlamaAiService } from '../../service/llama-ai.service';
+import { RagAiService } from '../../service/rag-ai.service';
 
 
 
@@ -26,41 +27,29 @@ export class RagAiComponent {
   ];
   contextEmbeddings: number[][] = [];
 
-  constructor(private http: HttpClient, private llamaAIService: LlamaAiService) {
+  constructor(private http: HttpClient, private llamaAIService: LlamaAiService,
+    private ragAiService: RagAiService) {
     this.preEmbedContext(); // Embed once at startup
     console.log(this.contextEmbeddings);
   }
 
   async preEmbedContext() {
     for (const chunk of this.contextChunks) {
-      const embedding = await this.getEmbedding('search_document: ' + chunk);
+      const embedding = await this.ragAiService.getEmbedding('search_document: ' + chunk);
       this.contextEmbeddings.push(embedding);
     }
   }
 
-  async getEmbedding(prompt: string): Promise<number[]> {
-    const res: any = await this.http.post('http://localhost:11434/api/embeddings', {
-      model: 'nomic-embed-text:v1.5',
-      prompt
-    }).toPromise();
-    return res.embedding;
-  }
 
-  cosineSimilarity(a: number[], b: number[]): number {
-    const dot = a.reduce((sum, val, i) => sum + val * b[i], 0);
-    const normA = Math.sqrt(a.reduce((sum, val) => sum + val * val, 0));
-    const normB = Math.sqrt(b.reduce((sum, val) => sum + val * val, 0));
-    return dot / (normA * normB);
-  }
 
   async ask() {
     this.answer = 'Generating...';
-    const queryEmbedding = await this.getEmbedding('search_query: ' + this.query);
+    const queryEmbedding = await this.ragAiService.getEmbedding('search_query: ' + this.query);
     const SIMILARITY_THRESHOLD = 0.5;
     // Find most similar chunk
     let bestIndex = 0, bestScore = -Infinity;
     for (let i = 0; i < this.contextEmbeddings.length; i++) {
-      const score = this.cosineSimilarity(queryEmbedding, this.contextEmbeddings[i]);
+      const score = this.ragAiService.cosineSimilarity(queryEmbedding, this.contextEmbeddings[i]);
       if (score > bestScore) {
         bestScore = score;
         bestIndex = i;
