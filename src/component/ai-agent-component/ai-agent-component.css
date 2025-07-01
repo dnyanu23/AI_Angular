@@ -1,0 +1,77 @@
+h1 {
+    /* ...existing code... */
+}
+
+.ai-agent-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.ai-agent-input-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    background: #f0f4fa;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 2px 8px #0001;
+}
+
+.ai-agent-textarea {
+    flex: 1;
+    resize: vertical;
+    border: 1.5px solid #90caf9;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 1rem;
+    transition: border 0.2s;
+}
+
+.ai-agent-textarea:focus {
+    border-color: #1976d2;
+}
+
+.ai-agent-send-btn {
+    background: linear-gradient(90deg, #1976d2 60%, #64b5f6 100%);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 18px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 6px #1976d220;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ai-agent-send-btn.active {
+    background: #1565c0;
+}
+
+.ai-agent-output {
+    margin-top: 18px;
+    background: #f8fafc;
+    border-left: 4px solid #1976d2;
+    border-radius: 6px;
+    padding: 18px 20px;
+    box-shadow: 0 1px 4px #1976d210;
+}
+
+.ai-agent-output-title {
+    color: #1976d2;
+}
+
+.ai-agent-output-pre {
+    background: #f1f8e9;
+    border-radius: 4px;
+    padding: 14px;
+    margin: 10px 0 0 0;
+    font-size: 1rem;
+    color: #263238;
+    white-space: pre-wrap;
+    tab-size: 2;
+}
