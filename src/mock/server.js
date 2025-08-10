@@ -18,7 +18,8 @@ app.post('/translate', (req, res) => {
 
 app.post('/send-mail', (req, res) => {
     const { data } = req.body;
-    console.log('Sending email with data:', { data });
+    debugger;
+    console.log('Sending email with data:', JSON.stringify(data));
     res.json({ response: res.statusCode, message: 'Email sent successfully' });
 });
 

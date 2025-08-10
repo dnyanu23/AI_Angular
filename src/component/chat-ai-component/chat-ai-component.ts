@@ -39,7 +39,7 @@ export class ChatAiComponent {
 
   }
   async preEmbedContext() {
-    alert('Precomputing context embeddings, please wait...');
+    // alert('Precomputing context embeddings, please wait...');
     for (const chunk of this.passage) {
       const embedding = await this.ragAiService.getEmbedding('search_document: ' + chunk);
       this.contextEmbeddings.push(embedding);
